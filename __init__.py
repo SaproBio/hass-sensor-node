@@ -23,6 +23,9 @@ class Api:
         self.username = username
         self.password = password
 
+        print(self.username)
+        print(self.password)
+
         # self.service = Service(binary_path="")
 
     async def fetch_data(self):
