@@ -39,9 +39,8 @@ class Api:
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Set up sensor_node from a config entry."""
 
-    hass.data[DOMAIN][entry.entry_id] = Api(
-        entry.data.get("username"), entry.data.get("password")
-    )
+
+    # hass.data[DOMAIN][entry.entry_id] = 
 
     # TODO Store an API object for your platforms to access
     # hass.data[DOMAIN][entry.entry_id] = MyApi(...)

@@ -4,6 +4,8 @@ from datetime import timedelta
 from homeassistant.exceptions import ConfigEntryAuthFailed
 import logging
 
+from . import Api
+
 import async_timeout
 
 from homeassistant.components.sensor import (
@@ -68,7 +70,10 @@ class DataFetcher(DataUpdateCoordinator):
 
 async def async_setup_entry(hass, entry, async_add_entities) -> None:
 
-    my_api = hass.data[DOMAIN][entry.entry_id]
+    my_api = Api(
+        entry.data.get("username"), entry.data.get("password")
+    )
+    #  = hass.data[DOMAIN][entry.entry_id]
     coordinator = DataFetcher(hass, my_api)
 
     await coordinator.async_config_entry_first_refresh()
