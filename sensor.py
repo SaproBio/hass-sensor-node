@@ -42,6 +42,7 @@ class DataFetcher(DataUpdateCoordinator):
             hass, _LOGGER, name="Sensor Node", update_interval=timedelta(minutes=1)
         )
         self.my_api = my_api
+        self.data = [0, 0, 0]
 
     async def _async_update_data(self):
         """Fetch data from API endpoint.
@@ -57,9 +58,9 @@ class DataFetcher(DataUpdateCoordinator):
 
                 print(data)
 
-                self.data[1]["state"] = data["humidity"]
-                self.data[2]["state"] = data["temperature"]
-                self.data[3]["state"] = data["co2"]
+                self.data[1] = data["humidity"]
+                self.data[2] = data["temperature"]
+                self.data[3] = data["co2"]
 
                 return data
         # except ApiAuthError as err:
@@ -100,7 +101,7 @@ class Temperature(CoordinatorEntity, SensorEntity):
     @callback
     def _handle_coordinator_update(self) -> None:
         """Handle date from coordinator"""
-        self._attr_native_value = self.coordinator.data[self.idx]["state"]
+        self._attr_native_value = self.coordinator.data[self.idx]
 
 
 class Carbon(CoordinatorEntity, SensorEntity):
@@ -118,7 +119,7 @@ class Carbon(CoordinatorEntity, SensorEntity):
     @callback
     def _handle_coordinator_update(self) -> None:
         """Handle date from coordinator"""
-        self._attr_native_value = self.coordinator.data[self.idx]["state"]
+        self._attr_native_value = self.coordinator.data[self.idx]
 
 
 class Humidity(CoordinatorEntity, SensorEntity):
@@ -136,4 +137,4 @@ class Humidity(CoordinatorEntity, SensorEntity):
     @callback
     def _handle_coordinator_update(self) -> None:
         """Handle date from coordinator"""
-        self._attr_native_value = self.coordinator.data[self.idx]["state"]
+        self._attr_native_value = self.coordinator.data[self.idx]
