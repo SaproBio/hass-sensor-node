@@ -1,0 +1,18 @@
+{
+  "domain": "sapro_bio",
+  "name": "sensor_node",
+  "config_flow": true,
+  "documentation": "https://www.home-assistant.io/integrations/sapro_bio",
+  "requirements": [
+    "selenium==4.3.0",
+    "chromedriver-py"
+  ],
+  "ssdp": [],
+  "zeroconf": [],
+  "homekit": {},
+  "dependencies": [],
+  "codeowners": [
+    "@SaproBio"
+  ],
+  "iot_class": "cloud_polling"
+}
