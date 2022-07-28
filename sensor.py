@@ -102,6 +102,7 @@ class Temperature(CoordinatorEntity, SensorEntity):
     @callback
     def _handle_coordinator_update(self) -> None:
         """Handle date from coordinator"""
+        print(self.coordinator.data)
         self._attr_native_value = self.coordinator.data[self.idx]
 
 
@@ -120,6 +121,7 @@ class Carbon(CoordinatorEntity, SensorEntity):
     @callback
     def _handle_coordinator_update(self) -> None:
         """Handle date from coordinator"""
+        print(self.coordinator.data)
         self._attr_native_value = self.coordinator.data[self.idx]
 
 
@@ -138,4 +140,5 @@ class Humidity(CoordinatorEntity, SensorEntity):
     @callback
     def _handle_coordinator_update(self) -> None:
         """Handle date from coordinator"""
+        print(self.coordinator.data)
         self._attr_native_value = self.coordinator.data[self.idx]
