@@ -5,8 +5,7 @@
   "config_flow": true,
   "documentation": "https://www.home-assistant.io/integrations/sapro_bio",
   "requirements": [
-    "selenium==4.3.0",
-    "chromedriver-py"
+    "selenium==4.3.0"
   ],
   "ssdp": [],
   "zeroconf": [],

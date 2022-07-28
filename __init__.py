@@ -11,13 +11,11 @@ from selenium.webdriver.chrome.service import Service
 
 from selenium import webdriver
 
-from chromedriver_py import binary_path
-
 from .const import DOMAIN
 
 # TODO List the platforms that you want to support.
 # For your initial PR, limit it to 1 platform.
-PLATFORMS: list[Platform] = [Platform.SENSOR, Platform.LIGHT]
+PLATFORMS: list[Platform] = [Platform.SENSOR]
 
 
 class Api:
@@ -26,8 +24,8 @@ class Api:
         self.username = username
         self.password = password
 
-        self.service = Service(binary_path)
-        self.driver = webdriver.Chrome(service=self.service)
+        # self.service = Service(binary_path="")
+        self.driver = webdriver.Chrome()
 
     async def fetch_data(self):
         """Fetch data from API"""
