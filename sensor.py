@@ -104,6 +104,7 @@ class Temperature(CoordinatorEntity, SensorEntity):
         """Handle date from coordinator"""
         print(self.coordinator.data)
         self._attr_native_value = float(self.coordinator.data["temperature"])
+        self.async_write_ha_state()
 
 
 class Carbon(CoordinatorEntity, SensorEntity):
@@ -123,6 +124,7 @@ class Carbon(CoordinatorEntity, SensorEntity):
         """Handle date from coordinator"""
         print(self.coordinator.data)
         self._attr_native_value = float(self.coordinator.data["co2"])
+        self.async_write_ha_state()
 
 
 class Humidity(CoordinatorEntity, SensorEntity):
@@ -142,3 +144,4 @@ class Humidity(CoordinatorEntity, SensorEntity):
         """Handle date from coordinator"""
         print(self.coordinator.data)
         self._attr_native_value = float(self.coordinator.data["humidity"])
+        self.async_write_ha_state()
