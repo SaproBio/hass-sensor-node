@@ -23,6 +23,8 @@ class Api:
         self.username = username
         self.password = password
 
+        # self.session = aiohttp.ClientSession()
+
         print(self.username)
         print(self.password)
 
@@ -30,7 +32,8 @@ class Api:
 
     async def fetch_data(self):
         """Fetch data from API"""
-        
+        # session = await aiohttp.ClientSession()
+
         async with aiohttp.ClientSession() as session:
             async with session.post(self.host, json={'username': self.username, 'password': self.password}) as response:
                 html = await response.text()
