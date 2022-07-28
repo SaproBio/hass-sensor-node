@@ -31,9 +31,9 @@ class PlaceholderHub:
     TODO Remove this placeholder class and replace with things from your PyPI package.
     """
 
-    def __init__(self, host: str) -> None:
+    def __init__(self) -> None:
         """Initialize."""
-        self.host = host
+        # self.host = host
 
     async def authenticate(self, username: str, password: str) -> bool:
         """Test if we can authenticate with the host."""
@@ -53,7 +53,7 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str,
     #     your_validate_func, data["username"], data["password"]
     # )
 
-    hub = PlaceholderHub(data["host"])
+    hub = PlaceholderHub()
 
     if not await hub.authenticate(data["username"], data["password"]):
         raise InvalidAuth
