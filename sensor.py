@@ -55,6 +55,8 @@ class DataFetcher(DataUpdateCoordinator):
             async with async_timeout.timeout(60):
                 data = await self.my_api.fetch_data()
 
+                print(data)
+
                 self.data[1]["state"] = data["humidity"]
                 self.data[2]["state"] = data["temperature"]
                 self.data[3]["state"] = data["co2"]

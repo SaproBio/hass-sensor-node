@@ -33,7 +33,8 @@ class Api:
         
         async with aiohttp.ClientSession() as session:
             async with session.post(self.host, data={'username': self.username, 'password': self.password}) as response:
-                html = await response.text()
+                html = response.text()
+                print(html)
                 data = json.loads(html)
 
                 return data[0]
