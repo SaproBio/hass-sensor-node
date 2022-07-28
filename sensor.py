@@ -26,7 +26,7 @@ from homeassistant.helpers.update_coordinator import (
     UpdateFailed,
 )
 
-from .const import DOMAIN
+from .const import DOMAIN, SCAN_INTERVAL
 
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
@@ -39,7 +39,7 @@ _LOGGER = logging.getLogger(__name__)
 class DataFetcher(DataUpdateCoordinator):
     def __init__(self, hass, my_api):
         super().__init__(
-            hass, _LOGGER, name="Sensor Node", update_interval=timedelta(minutes=1)
+            hass, _LOGGER, name="Sensor Node", update_interval=timedelta(minutes=SCAN_INTERVAL)
         )
         self.my_api = my_api
         self.data = [0, 0, 0]
