@@ -103,7 +103,7 @@ class Temperature(CoordinatorEntity, SensorEntity):
     def _handle_coordinator_update(self) -> None:
         """Handle date from coordinator"""
         print(self.coordinator.data)
-        self._attr_native_value = self.coordinator.data["temperature"]
+        self._attr_native_value = float(self.coordinator.data["temperature"])
 
 
 class Carbon(CoordinatorEntity, SensorEntity):
@@ -122,7 +122,7 @@ class Carbon(CoordinatorEntity, SensorEntity):
     def _handle_coordinator_update(self) -> None:
         """Handle date from coordinator"""
         print(self.coordinator.data)
-        self._attr_native_value = self.coordinator.data["co2"]
+        self._attr_native_value = float(self.coordinator.data["co2"])
 
 
 class Humidity(CoordinatorEntity, SensorEntity):
@@ -141,4 +141,4 @@ class Humidity(CoordinatorEntity, SensorEntity):
     def _handle_coordinator_update(self) -> None:
         """Handle date from coordinator"""
         print(self.coordinator.data)
-        self._attr_native_value = self.coordinator.data["humidity"]
+        self._attr_native_value = float(self.coordinator.data["humidity"])
