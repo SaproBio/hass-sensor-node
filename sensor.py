@@ -58,9 +58,9 @@ class DataFetcher(DataUpdateCoordinator):
 
                 print(data)
 
-                self.data[1] = data["humidity"]
-                self.data[2] = data["temperature"]
-                self.data[3] = data["co2"]
+                self.data[0] = data["humidity"]
+                self.data[1] = data["temperature"]
+                self.data[2] = data["co2"]
 
                 return data
         # except ApiAuthError as err:
