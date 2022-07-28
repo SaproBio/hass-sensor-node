@@ -51,7 +51,13 @@ class DataFetcher(DataUpdateCoordinator):
             # Note: asyncio.TimeoutError and aiohttp.ClientError are already
             # handled by the data update coordinator.
             async with async_timeout.timeout(10):
-                return await self.my_api.fetch_data()
+                data = await self.my_api.fetch_data()
+
+                self.data[1]["state"] = data["humidity"]
+                self.data[2]["state"] = data["temperature"]
+                self.data[3]["state"] = data["co2"]
+
+                return data
         # except ApiAuthError as err:
         # Raising ConfigEntryAuthFailed will cancel future updates
         # and start a config flow with SOURCE_REAUTH (async_step_reauth)

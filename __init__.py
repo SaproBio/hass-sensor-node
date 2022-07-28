@@ -1,15 +1,13 @@
 """The sensor_node integration."""
 from __future__ import annotations
 
+import aiohttp 
+
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant
 
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
-
-from selenium import webdriver
+import json
 
 from .const import DOMAIN
 
@@ -19,25 +17,23 @@ PLATFORMS: list[Platform] = [Platform.SENSOR]
 
 
 class Api:
-    def __init__(self, host, username, password):
-        self.host = host
+    def __init__(self, username, password):
+        self.host = "https://egctaz4bvyr6fwlk2p5mq2slna0tkzlf.lambda-url.ap-southeast-2.on.aws/"
+
         self.username = username
         self.password = password
 
         # self.service = Service(binary_path="")
-        self.driver = webdriver.Chrome()
 
     async def fetch_data(self):
         """Fetch data from API"""
-        self.driver.get(self.host)
+        
+        async with aiohttp.ClientSession() as session:
+            async with session.post(self.host, data={'username': self.username, 'password': self.password}) as response:
+                html = await response.text()
+                data = json.loads(html)
 
-        elements = self.driver.find_elements(
-            By.CLASS_NAME, "native-input sc-ion-input-md"
-        )
-        elements[0].send_keys(self.username)
-        elements[1].send_keys(self.password)
-
-        self.driver.find_elements(By.CLASS_NAME, "md button")[0].send_keys(Keys.ENTER)
+                return data[0]
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
