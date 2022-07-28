@@ -32,8 +32,8 @@ class Api:
         """Fetch data from API"""
         
         async with aiohttp.ClientSession() as session:
-            async with session.post(self.host, data={'username': self.username, 'password': self.password}) as response:
-                html = response.text()
+            async with session.post(self.host, json={'username': self.username, 'password': self.password}) as response:
+                html = await response.text()
                 print(html)
                 data = json.loads(html)
 
