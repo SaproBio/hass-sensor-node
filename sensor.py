@@ -52,7 +52,7 @@ class DataFetcher(DataUpdateCoordinator):
         try:
             # Note: asyncio.TimeoutError and aiohttp.ClientError are already
             # handled by the data update coordinator.
-            async with async_timeout.timeout(10):
+            async with async_timeout.timeout(60):
                 data = await self.my_api.fetch_data()
 
                 self.data[1]["state"] = data["humidity"]
