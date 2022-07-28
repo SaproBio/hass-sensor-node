@@ -71,7 +71,7 @@ class DataFetcher(DataUpdateCoordinator):
 async def async_setup_entry(hass, entry, async_add_entities) -> None:
 
     my_api = Api(
-        entry.data.get("username"), entry.data.get("password")
+        entry.data["username"], entry.data["password"]
     )
     #  = hass.data[DOMAIN][entry.entry_id]
     coordinator = DataFetcher(hass, my_api)
