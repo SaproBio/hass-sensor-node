@@ -82,7 +82,7 @@ async def async_setup_entry(hass, entry, async_add_entities) -> None:
     await coordinator.async_config_entry_first_refresh()
 
     async_add_entities(
-        Humidity(coordinator, 1), Temperature(coordinator, 2), Carbon(coordinator, 3)
+        Humidity(coordinator, 0), Temperature(coordinator, 1), Carbon(coordinator, 2)
     )
 
 
